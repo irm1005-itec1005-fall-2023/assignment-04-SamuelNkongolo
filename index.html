@@ -3,7 +3,7 @@
 
 <head>
   <!-- Set the page title -->
-  <title>Assignment 04 - Finishing a Todo List App</title>
+  <title>Assignment 04 - Finishing a Todo List App Nicolas Fava</title>
 
   <!-- Set the charset we're using to UTF-8 -->
   <meta charset="utf-8" />
@@ -24,7 +24,6 @@
   <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
 </head>
 <body>
-
   <!--
 
     Assignment 04 - Finishing a Todo List App
@@ -41,9 +40,25 @@
   -->
 
   <main>
-    <div id="app"></div>
-  </main>
 
+    
+    <div id="app"></div>
+    <div id="notification"></div>
+ 
+    <div class="Container">
+      <h2>Todo List:</h2>
+      <div class="Todo-Container">
+        <div class="Input-Container">
+          <input type="text" id="TodoInput" placeholder="Please ADD a new task">
+          <button id="addTodo">ADD</button>
+          <button id="ClearAll">CLEAR ALL</button>
+        </div>
+        <ul class="todo-list" id="TodoList">
+        </ul>
+        <ul id="todoListDisplay"></ul>
+      </div>
+    </div>
+  </main>
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>
 
