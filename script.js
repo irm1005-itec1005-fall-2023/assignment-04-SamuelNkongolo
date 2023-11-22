@@ -5,21 +5,13 @@
  */
 
 
-//
-// Variables
-
-
-// Constants
-
-
-// DOM Elements
 // Variables
 let tasks = [];
 let nextTaskID = 1;
 
 // DOM Elements
 let taskListElement = document.getElementById("TaskList");
-let taskInputElement = document.getElementById("TaskInput");
+let taskInputElement = document.getElementById("TodoInput");
 let addTaskButton = document.getElementById("AddTask");
 let clearTasksButton = document.getElementById("ClearTasks");
 
@@ -38,7 +30,8 @@ function displayTaskList() {
       `<h2>${task.description}</h2>
       <span>${task.id}</span>
       <button data-id="${task.id}" class="remove-btn">Remove</button>
-      <button data-id="${task.id}" class="complete-btn">Complete</button>`;
+      <button data-id="${task.id}" class="complete-btn">Complete</button>
+      <button data-id="${task.id}" class="edit-btn">Edit</button>`;
 
     if (task.completed) {
       const checkMark = document.createElement("span");
@@ -49,12 +42,6 @@ function displayTaskList() {
     }
 
     taskListElement.appendChild(taskItem);
-  }
-
-  // Check if there are tasks
-  if (tasks.length > 0) {
-    const lastAddedTask = tasks[tasks.length - 1].description;
-    // Do something with lastAddedTask if needed
   }
 }
 
@@ -75,6 +62,8 @@ function handleTaskClick(event) {
     removeTask(taskID);
   } else if (event.target.classList.contains("complete-btn")) {
     markTaskAsCompleted(taskID);
+  } else if (event.target.classList.contains("edit-btn")) {
+    editTaskDescription(taskID);
   }
 
   displayTaskList();
@@ -103,6 +92,18 @@ function removeTask(taskID) {
   tasks = tasks.filter((task) => task.id !== taskID);
 }
 
+function editTaskDescription(taskID) {
+  const taskIndex = tasks.findIndex((task) => task.id === taskID);
+
+  if (taskIndex !== -1) {
+    const newDescription = prompt("Enter new task description:", tasks[taskIndex].description);
+
+    if (newDescription !== null) {
+      tasks[taskIndex].description = newDescription.trim();
+    }
+  }
+}
+
 function clearAllTasks() {
   tasks = [];
   displayTaskList();
@@ -115,6 +116,3 @@ clearTasksButton.addEventListener("click", clearAllTasks);
 
 // Initial rendering
 displayTaskList();
-
-const appID = "app";
-const headingText = "To do. To done. ✅";

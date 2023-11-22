@@ -1,36 +1,33 @@
-/*
- * CSS File for the solution
- * Assignment 03
- * You can modify these styles but you don't have to
- */
-
-/*
- VARIABLES
-*/
-:root {
-  /* Core colours */
-  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-  --colour-amaranth: #e63946;
-  --colour-peppermint: #f1faee;
-  --colour-aquaisland: #a8dadc;
-  --colour-wedgewood: #457b9d;
-  --colour-cello: #1d3557;
-
-  /* Header configuration */
-  --header-heading-colour: var(--colour-peppermint);
-
-  /* Body configuration */
-  --body-default-colour: var(--colour-cello);
-  --body-background-colour: var(--colour-peppermint);
+/* Body styles */
+body {
+  background-color: rgba(255, 255, 224, 0.9); 
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 1px, transparent 2px); 
+  background-size: 10px 30px; 
 }
 
-/*
-  PAGE / BODY
-*/
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--body-default-colour);
-  background-color: var(--body-background-colour);
+
+/* Navbar styles */
+header {
+  background-color: #8B4513; 
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px; 
+}
+
+.navbar-content {
+  max-width: 1200px; 
+  width: 100%;
+  padding: 0 20px;
+}
+
+.navbar-title {
+  font-size: 2rem; 
+  color: white; 
+  font-weight: bold;
 }
 
 main {
@@ -54,3 +51,4 @@ main {
   white-space: nowrap;
   border-width: 0;
 }
+
