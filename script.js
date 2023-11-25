@@ -27,10 +27,10 @@ function displayTaskList() {
   for (const task of tasks) {
     const taskItem = document.createElement("li");
     taskItem.innerHTML =
-      `<h2>${task.description}</h2>
+      `<h2${task.completed ? ' class="completed-task"' : ''}>${task.description}</h2>
       <span>${task.id}</span>
       <button data-id="${task.id}" class="remove-btn">Remove</button>
-      <button data-id="${task.id}" class="complete-btn">Complete</button>
+      <button data-id="${task.id}" class="complete-btn">${task.completed ? 'Uncomplete' : 'Complete'}</button>
       <button data-id="${task.id}" class="edit-btn">Edit</button>`;
 
     if (task.completed) {
@@ -38,7 +38,6 @@ function displayTaskList() {
       checkMark.innerHTML = "✅";
       checkMark.classList.add("status-icon");
       taskItem.appendChild(checkMark);
-      taskItem.classList.add("done");
     }
 
     taskListElement.appendChild(taskItem);
@@ -61,12 +60,20 @@ function handleTaskClick(event) {
   if (event.target.classList.contains("remove-btn")) {
     removeTask(taskID);
   } else if (event.target.classList.contains("complete-btn")) {
-    markTaskAsCompleted(taskID);
+    toggleTaskCompletion(taskID);
   } else if (event.target.classList.contains("edit-btn")) {
     editTaskDescription(taskID);
   }
 
   displayTaskList();
+}
+
+function toggleTaskCompletion(taskID) {
+  const taskIndex = tasks.findIndex((task) => task.id === taskID);
+
+  if (taskIndex !== -1) {
+    tasks[taskIndex].completed = !tasks[taskIndex].completed;
+  }
 }
 
 function createTask(description) {
@@ -78,6 +85,9 @@ function createTask(description) {
 
   tasks.push(task);
   nextTaskID++;
+
+
+  displayTaskList();
 }
 
 function markTaskAsCompleted(taskID) {
