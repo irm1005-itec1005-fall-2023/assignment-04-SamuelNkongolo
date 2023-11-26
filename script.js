@@ -100,11 +100,7 @@ function handleTaskClick(event) {
   const taskID = parseInt(event.target.getAttribute("data-id"));
 
   if (event.target.classList.contains("remove-btn")) {
-    if (!isNaN(taskID)) {
-      removeTask(taskID);
-    } else {
-      showNotification("Spare who?");
-    }
+    removeTask(taskID);
   } else if (event.target.classList.contains("complete-btn")) {
     toggleTaskCompletion(taskID);
   } else if (event.target.classList.contains("edit-btn")) {
