@@ -21,6 +21,33 @@ function showNotification(message) {
   notificationElement.textContent = message;
 }
 
+// Function to toggle the visibility of the Death Note container
+function toggleDeathNoteContainer() {
+  const deathNoteContainer = document.getElementById("DeathNoteContainer");
+  const openDeathNoteButton = document.getElementById("OpenDeathNote");
+
+  if (deathNoteContainer.style.display === "none") {
+    // Show the Death Note container
+    deathNoteContainer.style.display = "block";
+    openDeathNoteButton.textContent = "Close Death Note";
+  } else {
+    // Hide the Death Note container
+    deathNoteContainer.style.display = "none";
+    openDeathNoteButton.textContent = "Open Death Note";
+  }
+}
+
+// Event listener for the "Open Death Note" button
+const openDeathNoteButton = document.getElementById("OpenDeathNote");
+openDeathNoteButton.addEventListener("click", toggleDeathNoteContainer);
+
+// Initial hiding of the Death Note container
+document.addEventListener("DOMContentLoaded", function () {
+  const deathNoteContainer = document.getElementById("DeathNoteContainer");
+  deathNoteContainer.style.display = "none";
+});
+
+
 function displayTaskList() {
   taskListElement.innerHTML = "";
 
@@ -55,14 +82,29 @@ function handleAddTask() {
     createTask(description);
     taskInputElement.value = "";
     displayTaskList();
+  } else {
+    showNotification("You can't kill nothing");
   }
+}
+
+function showNotification(message) {
+  const notificationElement = document.getElementById("notificationArea");
+  notificationElement.textContent = message;
+
+  setTimeout(() => {
+    notificationElement.textContent = "";
+  }, 3000);
 }
 
 function handleTaskClick(event) {
   const taskID = parseInt(event.target.getAttribute("data-id"));
 
   if (event.target.classList.contains("remove-btn")) {
-    removeTask(taskID);
+    if (!isNaN(taskID)) {
+      removeTask(taskID);
+    } else {
+      showNotification("Spare who?");
+    }
   } else if (event.target.classList.contains("complete-btn")) {
     toggleTaskCompletion(taskID);
   } else if (event.target.classList.contains("edit-btn")) {

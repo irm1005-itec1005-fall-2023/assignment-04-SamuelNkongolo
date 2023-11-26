@@ -2,12 +2,25 @@
 <html lang="en-ca">
 
 <head>
-  <title>Assignment 04 - Samuel Nkongolo</title>
+  <!-- Set the page title -->
+  <title>Assignment 04 - Samuel Nkongolo- Not to be taken seriously</title>
+
+  <!-- Set the charset we're using to UTF-8 -->
   <meta charset="utf-8" />
+
+  <!-- Set the screens default zoom / scale to 1 -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Specifies the document mode for Internet Explorer -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <!-- Set the CSS Reset File -->
   <link rel="stylesheet" href="./reset.css" />
+
+  <!-- Set the main stylesheet -->
   <link rel="stylesheet" href="./style.css" />
+
+  <!-- Set the Favicon  -->
   <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
 </head>
 
@@ -21,6 +34,8 @@
   </header>
 
   <main>
+    <button id="OpenDeathNote">Open Death Note</button>
+    <div class="Container" id="DeathNoteContainer">
     <div class="Container">
       <div class="notepad-bar">List</div>
       <h2>Todo List:</h2>
@@ -28,14 +43,23 @@
         <div class="Input-Container">
           <input type="text" id="TodoInput" placeholder="What shall we kill today">
           <button id="AddTask">Add them</button>
-          <button id="ClearTasks">Spare them</button>
+          <div id="notificationArea"></div>
         </div>
         <ul class="todo-list" id="TaskList"></ul>
       </div>
     </div>
   </main>
-
+  <!-- Add JavaScript File -->
   <script src="./script.js"></script>
 </body>
 
 </html>
+
+
+ <!-- Citations
+https://www.youtube.com/watch?v=FOC5RZHK_Gw
+https://iconmonstr.com/
+
+
+
+-->
