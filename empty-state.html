@@ -3,7 +3,7 @@
 
 <head>
   <!-- Set the page title -->
-  <title>Assignment 04 - Samuel Nkongolo</title>
+  <title>Empty State - Samuel Nkongolo</title>
 
   <!-- Set the charset we're using to UTF-8 -->
   <meta charset="utf-8" />
@@ -22,6 +22,13 @@
 
   <!-- Set the Favicon  -->
   <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
+
+  <script>
+    // Redirect to the to-do list page after a delay (e.g., 3000 milliseconds = 3 seconds)
+    setTimeout(function () {
+      window.location.href = "path/to/your/todo-list.html";
+    }, 3000); // Adjust the delay as needed
+  </script>
 </head>
 
 <body>
@@ -35,20 +42,23 @@
 
   <main>
     <div class="Container">
-      <div class="notepad-bar">List</div>
-      <h2>Todo List:</h2>
-      <div class="Todo-Container">
-        <div class="Input-Container">
-          <input type="text" id="TodoInput" placeholder="What shall we kill today">
-          <button id="AddTask">Add them</button>
-          <button id="ClearTasks">Spare them</button>
-        </div>
-        <ul class="todo-list" id="TaskList"></ul>
-      </div>
+      <div class="notepad-bar">Empty State</div>
+      <h2>No tasks to kill!</h2>
+      <p>Add some tasks to unleash the power of the Deathnote.</p>
+      <button id="OpenDeathnote">Open Deathnote</button>
     </div>
   </main>
+
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>
+
+  <script>
+    // Add an event listener to the "Open Deathnote" button
+    document.getElementById("OpenDeathnote").addEventListener("click", function () {
+      // Redirect to the actual to-do list page
+      window.location.href = "path/to/your/todo-list.html";
+    });
+  </script>
 </body>
 
 </html>

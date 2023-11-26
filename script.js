@@ -24,13 +24,17 @@ function showNotification(message) {
 function displayTaskList() {
   taskListElement.innerHTML = "";
 
+  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+
+  tasks = storedTasks || tasks;
+
   for (const task of tasks) {
     const taskItem = document.createElement("li");
     taskItem.innerHTML =
       `<h2${task.completed ? ' class="completed-task"' : ''}>${task.description}</h2>
       <span>${task.id}</span>
-      <button data-id="${task.id}" class="remove-btn">Remove</button>
-      <button data-id="${task.id}" class="complete-btn">${task.completed ? 'Uncomplete' : 'Complete'}</button>
+      <button data-id="${task.id}" class="remove-btn">Spare</button>
+      <button data-id="${task.id}" class="complete-btn">${task.completed ? 'Unkill' : 'Kill'}</button>
       <button data-id="${task.id}" class="edit-btn">Edit</button>`;
 
     if (task.completed) {
@@ -73,22 +77,31 @@ function toggleTaskCompletion(taskID) {
 
   if (taskIndex !== -1) {
     tasks[taskIndex].completed = !tasks[taskIndex].completed;
+
+    // Update stored tasks in localStorage
+    updateStoredTasks();
   }
 }
 
 function createTask(description) {
   let task = {
-    id: nextTaskID,
+    id: getNextTaskID(),
     description: description,
     completed: false,
   };
 
   tasks.push(task);
-  nextTaskID++;
 
-
+  // Update stored tasks in localStorage
+  updateStoredTasks();
   displayTaskList();
 }
+
+function getNextTaskID() {
+  return tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1;
+}
+
+
 
 function markTaskAsCompleted(taskID) {
   const taskIndex = tasks.findIndex((task) => task.id === taskID);
@@ -100,6 +113,10 @@ function markTaskAsCompleted(taskID) {
 
 function removeTask(taskID) {
   tasks = tasks.filter((task) => task.id !== taskID);
+
+  // Update stored tasks in localStorage
+  updateStoredTasks();
+  displayTaskList();
 }
 
 function editTaskDescription(taskID) {
@@ -110,8 +127,16 @@ function editTaskDescription(taskID) {
 
     if (newDescription !== null) {
       tasks[taskIndex].description = newDescription.trim();
+
+      // Update stored tasks in localStorage
+      updateStoredTasks();
     }
   }
+}
+
+function updateStoredTasks() {
+  // Update stored tasks in localStorage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function clearAllTasks() {

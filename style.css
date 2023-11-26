@@ -6,6 +6,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed; 
+  margin: 0;
 }
 
 
@@ -15,6 +16,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 1000; 
+  left: 0;
 }
 
 .navbar {
@@ -52,12 +54,25 @@ main {
 
 .Container {
   background-color: whitesmoke;
-  border-radius: 10px; 
-  padding: 20px; 
-  margin: 200px 0 0 20px; 
-  position: relative; 
+  border-radius: 10px;
+  padding: 20px;
+  margin: 200px 0 0 0; 
+  position: relative;
 }
 
+.Input-Container {
+  border-radius: 10px; 
+  background-color: black;
+  padding: 10px; 
+}
+
+button, input {
+  border-radius: 5px;
+  background-color: white; 
+  color: black; 
+  padding: 8px; 
+  margin: 5px; 
+}
 
 .notepad-bar {
   background-color: black;
@@ -65,8 +80,8 @@ main {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 5px 10px;
-  border-top-left-radius: 10px; 
-  border-top-right-radius: 10px; 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   position: absolute;
   top: 0;
   left: 0;
