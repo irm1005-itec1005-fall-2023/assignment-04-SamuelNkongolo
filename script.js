@@ -14,6 +14,7 @@ let taskListElement = document.getElementById("TaskList");
 let taskInputElement = document.getElementById("TodoInput");
 let addTaskButton = document.getElementById("AddTask");
 let clearTasksButton = document.getElementById("ClearTasks");
+let completeAllButton = document.getElementById("CompleteAll");
 
 // Functions
 function showNotification(message) {
@@ -103,8 +104,15 @@ function handleTaskClick(event) {
     removeTask(taskID);
   } else if (event.target.classList.contains("complete-btn")) {
     toggleTaskCompletion(taskID);
+    if (event.target.textContent === "Kill") {
+      showNotification("Splendid job, sir!");
+    } else if (event.target.textContent === "Unkill") {
+      showNotification("Boohooo :(");
+    }
   } else if (event.target.classList.contains("edit-btn")) {
     editTaskDescription(taskID);
+  } else if (event.target.classList.contains("spare-btn")) {
+    showNotification("He got lucky");
   }
 
   displayTaskList();
@@ -182,10 +190,22 @@ function clearAllTasks() {
   displayTaskList();
 }
 
+function handleCompleteAll() {
+  // Mark all tasks as completed
+  tasks.forEach(task => {
+    task.completed = true;
+  });
+
+  // Update stored tasks in localStorage
+  updateStoredTasks();
+  displayTaskList();
+}
+
 // Event Listeners
 addTaskButton.addEventListener("click", handleAddTask);
 taskListElement.addEventListener("click", handleTaskClick);
 clearTasksButton.addEventListener("click", clearAllTasks);
+completeAllButton.addEventListener("click", handleCompleteAll);
 
 // Initial rendering
 displayTaskList();
