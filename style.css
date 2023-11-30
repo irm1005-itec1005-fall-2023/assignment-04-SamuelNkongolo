@@ -1,44 +1,156 @@
-/*
- * CSS File for the solution
- * Assignment 03
- * You can modify these styles but you don't have to
- */
-
-/*
- VARIABLES
-*/
-:root {
-  /* Core colours */
-  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-  --colour-amaranth: #e63946;
-  --colour-peppermint: #f1faee;
-  --colour-aquaisland: #a8dadc;
-  --colour-wedgewood: #457b9d;
-  --colour-cello: #1d3557;
-
-  /* Header configuration */
-  --header-heading-colour: var(--colour-peppermint);
-
-  /* Body configuration */
-  --body-default-colour: var(--colour-cello);
-  --body-background-colour: var(--colour-peppermint);
+/* Body styles */
+body {
+  background-color: whitesmoke; 
+  background-image: url(./HD-wallpaper-death-note-notebook-notebook-shinigami-death-note-anime.jpg);
+  background-size: 10px 30px; 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  margin: 0;
 }
 
-/*
-  PAGE / BODY
-*/
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--body-default-colour);
-  background-color: var(--body-background-colour);
+
+/* Navbar styles */
+header {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  z-index: 1000; 
+  left: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px; 
+}
+
+.navbar-content {
+  max-width: 1200px; 
+  width: 100%;
+  padding: 0 20px;
+}
+
+.navbar-title {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+  font-family: 'Marker Felt', fantasy;                                          
+  letter-spacing: 10px; 
+  text-transform: uppercase; 
 }
 
 main {
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.completed-task {
+  text-decoration: line-through;
+}
+
+.Container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 50px auto;
+  position: relative;
+  max-width: 600px;
+  background-image: linear-gradient(0deg, transparent 10px, #ccc 10px, #ccc 11px, transparent 11px);
+  background-size: 100% 22px; 
+  cursor: url(./iconmonstr-pencil-9.svg), auto;
+}
+
+.notepad-bar {
+  color: red;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-list li {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  color: red;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.todo-list li:last-child {
+  border-bottom: none;
+}
+
+.Input-Container {
+  border-radius: 10px;
+  overflow: hidden; 
+}
+
+
+#TodoInput {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  width: 70%;
+}
+
+
+#AddTask,
+#CompleteAll {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  font-size: 1rem;
+}
+
+
+#AddTask:hover,
+#CompleteAll:hover {
+  background-color: darkred;
+}
+
+
+.todo-list li button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+
+.todo-list li button:hover {
+  background-color: #ccc;
+}
+
+.logo-img {
+  width: 100px; 
+  height: auto; 
+  margin-right: 10px;
+}
+
+.responsibility-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px; 
 }
 
 
@@ -54,3 +166,6 @@ main {
   white-space: nowrap;
   border-width: 0;
 }
+
+
+

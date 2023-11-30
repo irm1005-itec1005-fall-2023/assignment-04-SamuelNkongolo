@@ -3,7 +3,7 @@
 
 <head>
   <!-- Set the page title -->
-  <title>Assignment 04 - Finishing a Todo List App</title>
+  <title>Assignment 04 - Samuel Nkongolo- Not to be taken seriously</title>
 
   <!-- Set the charset we're using to UTF-8 -->
   <meta charset="utf-8" />
@@ -23,29 +23,49 @@
   <!-- Set the Favicon  -->
   <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
 </head>
+
 <body>
-
-  <!--
-
-    Assignment 04 - Finishing a Todo List App
-
-    Instructions:
-
-    Important checklist:
-
-    - Are users able to create and delete to do list items?
-    - Have you set a favicon? (included - but it's a rocket)
-    - Has a team member conducted a code review and left a GitHub Issue in your repo?
-    - Have you conducted a code review and left a GitHub Issue on your team member's repo?
-
-  -->
+  <header>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <span class="navbar-title">DEATHNOTE</span>
+      </div>
+    </nav>
+  </header>
 
   <main>
-    <div id="app"></div>
+    <button id="OpenDeathNote">Open Death Note</button>
+    <div class="Container" id="DeathNoteContainer">
+    <div class="Container">
+      <div class="notepad-bar">
+        <img src="./death-note-ryuk-character-png-clipart.jpg" alt="Logo" class="logo-img">
+        KONICHIWA
+      </div>
+      <h2>Todo List:</h2>
+      <div class="Todo-Container">
+        <div class="Input-Container">
+          <input type="text" id="TodoInput" placeholder="What shall we kill today">
+          <button id="AddTask">Add them</button>
+          <button id="CompleteAll">Complete All</button>
+          
+        </div>
+        <div id="notificationArea"></div>
+        <ul class="todo-list" id="TaskList"></ul>
+      </div>
+    </div>
+    </div>
   </main>
-
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>
-
 </body>
+
 </html>
+
+
+ <!-- Citations
+https://www.youtube.com/watch?v=FOC5RZHK_Gw
+https://iconmonstr.com/
+https://www.youtube.com/watch?v=G0jO8kUrg-I&t=1s
+chatgpt
+
+-->

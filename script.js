@@ -5,39 +5,207 @@
  */
 
 
-//
 // Variables
-//
-
-// Constants
-const appID = "app";
-const headingText = "To do. To done. ✅";
+let tasks = [];
+let nextTaskID = 1;
 
 // DOM Elements
-let appContainer = document.getElementById(appID);
+let taskListElement = document.getElementById("TaskList");
+let taskInputElement = document.getElementById("TodoInput");
+let addTaskButton = document.getElementById("AddTask");
+let clearTasksButton = document.getElementById("ClearTasks");
+let completeAllButton = document.getElementById("CompleteAll");
 
-//
 // Functions
-//
-
-// Add a heading to the app container
-function inititialise() {
-  // If anything is wrong with the app container then end
-  if (!appContainer) {
-    console.error("Error: Could not find app contianer");
-    return;
-  }
-
-  // Create an h1 and add it to our app
-  const h1 = document.createElement("h1");
-  h1.innerText = headingText;
-  appContainer.appendChild(h1);
-
-  // Init complete
-  console.log("App successfully initialised");
+function showNotification(message) {
+  const notificationElement = document.getElementById("notificationArea");
+  notificationElement.textContent = message;
 }
 
-//
-// Inits & Event Listeners
-//
-inititialise();
+// Function to toggle the visibility of the Death Note container
+function toggleDeathNoteContainer() {
+  const deathNoteContainer = document.getElementById("DeathNoteContainer");
+  const openDeathNoteButton = document.getElementById("OpenDeathNote");
+
+  if (deathNoteContainer.style.display === "none") {
+    // Show the Death Note container
+    deathNoteContainer.style.display = "block";
+    openDeathNoteButton.textContent = "Close Death Note";
+  } else {
+    // Hide the Death Note container
+    deathNoteContainer.style.display = "none";
+    openDeathNoteButton.textContent = "Open Death Note";
+  }
+}
+
+// Event listener for the "Open Death Note" button
+const openDeathNoteButton = document.getElementById("OpenDeathNote");
+openDeathNoteButton.addEventListener("click", toggleDeathNoteContainer);
+
+// Initial hiding of the Death Note container
+document.addEventListener("DOMContentLoaded", function () {
+  const deathNoteContainer = document.getElementById("DeathNoteContainer");
+  deathNoteContainer.style.display = "none";
+});
+
+
+function displayTaskList() {
+  taskListElement.innerHTML = "";
+
+  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+
+  tasks = storedTasks || tasks;
+
+  for (const task of tasks) {
+    const taskItem = document.createElement("li");
+    taskItem.innerHTML =
+      `<h2${task.completed ? ' class="completed-task"' : ''}>${task.description}</h2>
+      <span>${task.id}</span>
+      <button data-id="${task.id}" class="remove-btn">Spare</button>
+      <button data-id="${task.id}" class="complete-btn">${task.completed ? 'Unkill' : 'Kill'}</button>
+      <button data-id="${task.id}" class="edit-btn">Edit</button>`;
+
+    if (task.completed) {
+      const checkMark = document.createElement("span");
+      checkMark.innerHTML = "✅";
+      checkMark.classList.add("status-icon");
+      taskItem.appendChild(checkMark);
+    }
+
+    taskListElement.appendChild(taskItem);
+  }
+}
+
+function handleAddTask() {
+  const description = taskInputElement.value.trim();
+
+  if (description !== "") {
+    createTask(description);
+    taskInputElement.value = "";
+    displayTaskList();
+  } else {
+    showNotification("You can't kill nothing");
+  }
+}
+
+function showNotification(message) {
+  const notificationElement = document.getElementById("notificationArea");
+  notificationElement.textContent = message;
+
+  setTimeout(() => {
+    notificationElement.textContent = "";
+  }, 3000);
+}
+
+function handleTaskClick(event) {
+  const taskID = parseInt(event.target.getAttribute("data-id"));
+
+  if (event.target.classList.contains("remove-btn")) {
+    removeTask(taskID);
+  } else if (event.target.classList.contains("complete-btn")) {
+    toggleTaskCompletion(taskID);
+    if (event.target.textContent === "Kill") {
+      showNotification("Splendid job, sir!");
+    } else if (event.target.textContent === "Unkill") {
+      showNotification("Boohooo :(");
+    }
+  } else if (event.target.classList.contains("edit-btn")) {
+    editTaskDescription(taskID);
+  } else if (event.target.classList.contains("spare-btn")) {
+    showNotification("He got lucky");
+  }
+
+  displayTaskList();
+}
+
+function toggleTaskCompletion(taskID) {
+  const taskIndex = tasks.findIndex((task) => task.id === taskID);
+
+  if (taskIndex !== -1) {
+    tasks[taskIndex].completed = !tasks[taskIndex].completed;
+
+    // Update stored tasks in localStorage
+    updateStoredTasks();
+  }
+}
+
+function createTask(description) {
+  let task = {
+    id: getNextTaskID(),
+    description: description,
+    completed: false,
+  };
+
+  tasks.push(task);
+
+  // Update stored tasks in localStorage
+  updateStoredTasks();
+  displayTaskList();
+}
+
+function getNextTaskID() {
+  return tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1;
+}
+
+
+
+function markTaskAsCompleted(taskID) {
+  const taskIndex = tasks.findIndex((task) => task.id === taskID);
+
+  if (taskIndex !== -1) {
+    tasks[taskIndex].completed = true;
+  }
+}
+
+function removeTask(taskID) {
+  tasks = tasks.filter((task) => task.id !== taskID);
+
+  // Update stored tasks in localStorage
+  updateStoredTasks();
+  displayTaskList();
+}
+
+function editTaskDescription(taskID) {
+  const taskIndex = tasks.findIndex((task) => task.id === taskID);
+
+  if (taskIndex !== -1) {
+    const newDescription = prompt("Enter new task description:", tasks[taskIndex].description);
+
+    if (newDescription !== null) {
+      tasks[taskIndex].description = newDescription.trim();
+
+      // Update stored tasks in localStorage
+      updateStoredTasks();
+    }
+  }
+}
+
+function updateStoredTasks() {
+  // Update stored tasks in localStorage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function clearAllTasks() {
+  tasks = [];
+  displayTaskList();
+}
+
+function handleCompleteAll() {
+  // Mark all tasks as completed
+  tasks.forEach(task => {
+    task.completed = true;
+  });
+
+  // Update stored tasks in localStorage
+  updateStoredTasks();
+  displayTaskList();
+}
+
+// Event Listeners
+addTaskButton.addEventListener("click", handleAddTask);
+taskListElement.addEventListener("click", handleTaskClick);
+clearTasksButton.addEventListener("click", clearAllTasks);
+completeAllButton.addEventListener("click", handleCompleteAll);
+
+// Initial rendering
+displayTaskList();
