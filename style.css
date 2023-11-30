@@ -1,7 +1,7 @@
 /* Body styles */
 body {
   background-color: whitesmoke; 
-  background-image: url(./images/HD-wallpaper-death-note-notebook-notebook-shinigami-death-note-anime.jpg);
+  background-image: url(./HD-wallpaper-death-note-notebook-notebook-shinigami-death-note-anime.jpg);
   background-size: 10px 30px; 
   background-size: cover;
   background-repeat: no-repeat;
@@ -60,8 +60,8 @@ main {
   position: relative;
   max-width: 600px;
   background-image: linear-gradient(0deg, transparent 10px, #ccc 10px, #ccc 11px, transparent 11px);
-  background-size: 100% 22px; /* Set the size of the background pattern */
-  cursor: url(./images/iconmonstr-pencil-9.svg), auto;
+  background-size: 100% 22px; 
+  cursor: url(./iconmonstr-pencil-9.svg), auto;
 }
 
 .notepad-bar {
@@ -94,10 +94,10 @@ main {
 
 .Input-Container {
   border-radius: 10px;
-  overflow: hidden; /* Ensures that the border-radius is applied properly */
+  overflow: hidden; 
 }
 
-/* TodoInput styles */
+
 #TodoInput {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -106,7 +106,7 @@ main {
   width: 70%;
 }
 
-/* AddTask and CompleteAll buttons styles */
+
 #AddTask,
 #CompleteAll {
   border: none;
@@ -119,13 +119,13 @@ main {
   font-size: 1rem;
 }
 
-/* AddTask and CompleteAll hover styles */
+
 #AddTask:hover,
 #CompleteAll:hover {
   background-color: darkred;
 }
 
-/* Buttons inside the task list styles */
+
 .todo-list li button {
   border: none;
   border-radius: 5px;
@@ -135,9 +135,22 @@ main {
   font-size: 0.8rem;
 }
 
-/* Buttons inside the task list hover styles */
+
 .todo-list li button:hover {
   background-color: #ccc;
+}
+
+.logo-img {
+  width: 100px; 
+  height: auto; 
+  margin-right: 10px;
+}
+
+.responsibility-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px; 
 }
 
 
@@ -153,4 +166,6 @@ main {
   white-space: nowrap;
   border-width: 0;
 }
+
+
 
