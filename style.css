@@ -92,6 +92,53 @@ main {
   border-bottom: none;
 }
 
+.Input-Container {
+  border-radius: 10px;
+  overflow: hidden; /* Ensures that the border-radius is applied properly */
+}
+
+/* TodoInput styles */
+#TodoInput {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  width: 70%;
+}
+
+/* AddTask and CompleteAll buttons styles */
+#AddTask,
+#CompleteAll {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  font-size: 1rem;
+}
+
+/* AddTask and CompleteAll hover styles */
+#AddTask:hover,
+#CompleteAll:hover {
+  background-color: darkred;
+}
+
+/* Buttons inside the task list styles */
+.todo-list li button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+/* Buttons inside the task list hover styles */
+.todo-list li button:hover {
+  background-color: #ccc;
+}
 
 
 /****** Screen reader text utility clsas *******/
